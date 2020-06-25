@@ -1,0 +1,89 @@
+:source-highlighter: coderay
+:source-language: clojure
+:toc:
+:toc-placement: preamble
+:sectlinks:
+:sectanchors:
+:toc:
+:icons: font
+
+image:https://github.com/superstructor/re-frame-clipboard-fx/workflows/ci/badge.svg["CI", link="https://github.com/superstructor/re-frame-clipboard-fx/actions?workflow=ci"]
+image:https://github.com/superstructor/re-frame-clipboard-fx/workflows/cd/badge.svg["CD", link="https://github.com/superstructor/re-frame-clipboard-fx/actions?workflow=cd"]
+image:https://img.shields.io/github/v/tag/superstructor/re-frame-clipboard-fx?style=flat["GitHub tag (latest by date)", link="https://github.com/superstructor/re-frame-clipboard-fx/tags"]
+image:https://img.shields.io/clojars/v/superstructor/re-frame-clipboard-fx.svg["Clojars Project", link="https://clojars.org/superstructor/re-frame-clipboard-fx"]
+image:https://img.shields.io/github/issues-raw/superstructor/re-frame-clipboard-fx?style=flat["GitHub issues", link="https://github.com/superstructor/re-frame-clipboard-fx/issues"]
+image:https://img.shields.io/github/issues-pr/superstructor/re-frame-clipboard-fx?style=flat["GitHub pull requests", link="https://github.com/superstructor/re-frame-clipboard-fx/pulls"]
+image:https://img.shields.io/github/license/superstructor/re-frame-clipboard-fx?style=flat["License", link="https://github.com/superstructor/re-frame-clipboard-fx/blob/master/LICENSE"]
+
+== Clipboard Effect Handler for re-frame
+
+This re-frame library contains an
+https://github.com/superstructor/re-frame/blob/develop/docs/Effects.md[Effect Handler]
+for interacting with the system clipboard.
+
+Keyed `:clipboard`, it wraps browsers' native
+[`Document.execCommand() API`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard).
+
+Currently only the `copy` operation is supported. Future work includes supporting the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
+and support for more operations.
+
+== Quick Start
+
+=== Step 1. Add Dependency
+
+Add the following project dependency:
+image:https://img.shields.io/clojars/v/superstructor/re-frame-clipboard-fx.svg["Clojars Project", link="https://clojars.org/superstructor/re-frame-clipboard-fx"]
+
+Requires re-frame >= 0.8.0.
+
+=== Step 2. Registration and Use
+
+In the namespace where you register your event handlers, prehaps called
+`events.cljs`, you have two things to do.
+
+*First*, add this require to the `ns`:
+
+```
+(ns app.events
+  (:require
+   ...
+   [superstructor.re-frame.clipboard-fx]
+   ...))
+```
+
+Because we never subsequently use this require, it appears redundant. But its
+existence will cause the `:clipboard` effect handler to self-register with re-frame,
+which is important to everything that follows.
+
+*Second*, write an event handler which uses this effect:
+
+```
+(reg-event-fx
+  :handler-with-clipboard
+  (fn [{:keys [db]} _]
+    {:clipboard/copy {:text (get-in db [:some :path :to :text])
+                      :on-success             [:clipboard-success]
+                      :on-failure             [:clipboard-failure]}}))
+```
+
+== License
+
+Copyright &copy; 2020 Isaac Johnston.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
