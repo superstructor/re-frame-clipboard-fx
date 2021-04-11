@@ -12,7 +12,7 @@
                  [binaryage/oops            "0.7.1" ]
                  [re-frame                  "0.12.0"   :scope "provided"]]
 
-  :profiles {:dev {:dependencies [[binaryage/devtools "1.0.2"]]}}
+  :profiles {:dev {:dependencies [[binaryage/devtools "1.0.3"]]}}
 
   :plugins      [[day8/lein-git-inject "0.0.14"]
                  [lein-shadow          "0.2.0"]
