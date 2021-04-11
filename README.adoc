@@ -18,7 +18,7 @@ https://github.com/superstructor/re-frame/blob/develop/docs/Effects.md[Effect Ha
 for interacting with the system clipboard.
 
 Keyed `:clipboard`, it wraps browsers' native
-[`Document.execCommand() API`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard).
+link:https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard[`Document.execCommand()` API].
 
 Currently only the `copy` operation is supported. Future work includes supporting the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
 and support for more operations.
@@ -64,7 +64,7 @@ which is important to everything that follows.
 
 == License
 
-Copyright &copy; 2020 Isaac Johnston.
+Copyright &copy; 2020-2021 Isaac Johnston.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
