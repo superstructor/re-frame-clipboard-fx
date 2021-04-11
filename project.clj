@@ -39,13 +39,19 @@
                           :ns-regexp "-test$"
                           :output-to "target/karma-test.js"}}}
 
-  :aliases {"test-auto"  ["with-profile" "dev" "do"
-                          ["clean"]
-                          ["shadow" "watch" "browser-test"]]
-            "karma-once" ["do"
-                          ["clean"]
-                          ["shadow" "compile" "karma-test"]
-                          ["shell" "karma" "start" "--single-run" "--reporters" "junit,dots"]]}
+  :shell   {:commands {"karma" {:windows         ["cmd" "/c" "karma"]
+                                :default-command "karma"}
+                       "open"  {:windows         ["cmd" "/c" "start"]
+                                :macosx          "open"
+                                :linux           "xdg-open"}}}
+  
+  :aliases {"watch"  ["with-profile" "dev" "do"
+                      ["clean"]
+                      ["shadow" "watch" "browser-test"]]
+            "ci" ["do"
+                  ["clean"]
+                  ["shadow" "compile" "karma-test"]
+                  ["shell" "karma" "start" "--single-run" "--reporters" "junit,dots"]]}
 
   :deploy-repositories [["clojars" {:sign-releases false
                                     :url           "https://clojars.org/repo"
