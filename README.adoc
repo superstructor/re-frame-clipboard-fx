@@ -17,7 +17,7 @@ This re-frame library contains an
 https://github.com/superstructor/re-frame/blob/develop/docs/Effects.md[Effect Handler]
 for interacting with the system clipboard.
 
-Keyed `:clipboard`, it wraps browsers' native
+Keyed `::re-frame.clipboard-fx/copy`, it wraps browsers' native
 link:https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard[`Document.execCommand()` API].
 
 Currently only the `copy` operation is supported. Future work includes supporting the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
@@ -43,13 +43,9 @@ In the namespace where you register your event handlers, prehaps called
 (ns app.events
   (:require
    ...
-   [superstructor.re-frame.clipboard-fx]
+   [re-frame.clipboard-fx :as clipboard-fx]
    ...))
 ```
-
-Because we never subsequently use this require, it appears redundant. But its
-existence will cause the `:clipboard` effect handler to self-register with re-frame,
-which is important to everything that follows.
 
 *Second*, write an event handler which uses this effect:
 
@@ -57,9 +53,9 @@ which is important to everything that follows.
 (reg-event-fx
   :handler-with-clipboard
   (fn [{:keys [db]} _]
-    {:clipboard/copy {:text (get-in db [:some :path :to :text])
-                      :on-success             [:clipboard-success]
-                      :on-failure             [:clipboard-failure]}}))
+    {::clipboard-fx/copy {:text       (get-in db [:some :path :to :text])
+                          :on-success [:clipboard-success]
+                          :on-failure [:clipboard-failure]}}))
 ```
 
 == License

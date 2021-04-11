@@ -1,4 +1,4 @@
-(ns superstructor.re-frame.clipboard-fx
+(ns re-frame.clipboard-fx
   (:require
     [oops.core :refer [oget oset! ocall oapply ocall! oapply!
                        oget+ oset!+ ocall+ oapply+ ocall!+ oapply!+]]
@@ -19,7 +19,7 @@
 ;; =============================================================================
 
 (reg-fx
-  :clipboard/copy
+  ::copy
   (fn [{:keys [text on-success on-failure]
         :or   {on-success [:clipboard-no-on-success]
                on-failure [:clipboard-no-on-failure]}}]

@@ -1,8 +1,8 @@
-(ns superstructor.re-frame.clipboard-fx-test
+(ns re-frame.clipboard-fx-test
   (:require
     [clojure.test :refer [deftest is testing async use-fixtures]]
     [re-frame.core :as rf]
-    [superstructor.re-frame.clipboard-fx :as clipboard-fx]))
+    [re-frame.clipboard-fx :as clipboard-fx]))
 
 ;; Utilities
 ;; =============================================================================
