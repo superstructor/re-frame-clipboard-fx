@@ -12,14 +12,15 @@
                  [binaryage/oops            "0.7.1" ]
                  [re-frame                  "1.2.0"    :scope "provided"]]
 
-  :profiles {:dev {:dependencies [[binaryage/devtools "1.0.3"]]}}
-
   :plugins      [[day8/lein-git-inject "0.0.14"]
                  [lein-shadow          "0.3.1"]
-                 [lein-ancient         "0.6.15"]
                  [lein-shell           "0.5.0"]]
-
+  
   :middleware   [leiningen.git-inject/middleware]
+  
+  :profiles {:dev {:dependencies [[binaryage/devtools      "1.0.3"]]
+                   :plugins      [[com.github.liquidz/antq "RELEASE"]
+                                  [lein-pprint             "1.3.2"]]}}
 
   :jvm-opts ["-Xmx2g"]
 
