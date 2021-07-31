@@ -12,7 +12,7 @@
                  [binaryage/oops            "0.7.1" ]
                  [re-frame                  "1.2.0"    :scope "provided"]]
 
-  :plugins      [[day8/lein-git-inject "0.0.14"]
+  :plugins      [[day8/lein-git-inject "0.0.15"]
                  [lein-shadow          "0.4.0"]
                  [lein-shell           "0.5.0"]]
   
